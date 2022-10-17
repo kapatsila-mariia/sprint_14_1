@@ -7,7 +7,12 @@ const dispatchMultipleActionsMiddleware = storeAPI => next => action => {
     // TODO In that case, the return value should be the number of actions in the array.
 
     // Remember that `storeAPI` has the `dispatch` method available.
-
+    if (Array.isArray(action)) {
+        action.forEach((action) => storeAPI.dispatch(action));
+        
+        return action.length;
+    }
+    
     return next(action);
 
 }
