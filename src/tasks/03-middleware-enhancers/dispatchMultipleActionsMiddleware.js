@@ -6,10 +6,8 @@ const dispatchMultipleActionsMiddleware = storeAPI => next => action => {
       return res.length
     }
     else {
-      return next(action)
+      return next(action);
     }
-
-    return next(action);
 
 }
 
