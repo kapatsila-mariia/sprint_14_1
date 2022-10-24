@@ -8,11 +8,10 @@ const dispatchMultipleActionsMiddleware = storeAPI => next => action => {
 
     // Remember that `storeAPI` has the `dispatch` method available.
     if (Array.isArray(action)) {
-        action.forEach((action) => storeAPI.dispatch(action));
-        
+        action.forEach(action => storeAPI.dispatch(action));
         return action.length;
     }
-    
+
     return next(action);
 
 }
