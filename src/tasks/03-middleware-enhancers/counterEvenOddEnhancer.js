@@ -8,6 +8,13 @@ export default function counterEvenOddEnhancer(originalCreateStore) {
     return function newCreateStore(rootReducer, preloadedState, enhancer) {
         const store = originalCreateStore(rootReducer, preloadedState, enhancer);
 
-        return store;
-    }
+        function newGetState(){
+          let res = store.getState().counter % 2 === 0 ? "even" : "odd"
+          return{
+            ...store.getState(),
+            counterEvenOdd: res
+          }
+        }
+        return {...store, getState: newGetState}
+    } ;
 }
